@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col form-group">
+            <input class="form-control" placeholder="фильтр">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-header__item">
+                        <input class="fa fa-check" (change)="selectDeselectAll($event)"
+                            [(ngModel)]="selectDeselectAllModel" type="checkbox">
+                    </span>
+                    <span class="table-header__item">
+                        Название
+                        <span class="sort-icon"></span>
+                    </span>
+                    <span class="table-header__item">
+                        Дата изменения
+                    </span>
+                    <span class="table-header__item">
+                        Дата создания
+                    </span>
+                </div>
+                <div class="table-body">
+                    <div class="table-body__item-container" *ngFor="let package of packages">
+                        <span class="table-body__item">
+                            <input class="fa fa-check" (click)="$event.stopPropagation()"
+                                (change)="checkboxChanged(package, $event)" type="checkbox"
+                                [checked]="package.isSelected">
+                        </span>
+                        <span class="table-body__item text-ellipse">
+                            {{package.name}}
+                        </span>
+                        <span class="table-body__item">
+                            <div class="date">{{package.updated_at | date:'dd.MM.yyyy'}}</div>
+                            <div class="time">{{package.updated_at | date:'hh:mm:ss'}}</div>
+                        </span>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

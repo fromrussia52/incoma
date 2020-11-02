@@ -1,0 +1,15 @@
+<div class="package-container">
+    <aside class="package-aside">
+        <div class="app-title">Github репозитории</div>
+
+        <ul class="app-menu">
+            <li class="app-menu__item" [ngClass]="{active: activeMenu['all']}" (click)="navigate('packages/all')">
+                Все</li>
+            <li class="app-menu__item" [ngClass]="{active: activeMenu['saved']}" (click)="navigate('packages/saved')">
+                Сохраненные</li>
+        </ul>
+    </aside>
+    <main class="package-main ps" perfectScrollbar>
+        <router-outlet></router-outlet>
+    </main>
+</div>
