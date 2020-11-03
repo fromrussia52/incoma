@@ -1,7 +1,17 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col form-group">
-            <input class="form-control" placeholder="фильтр">
+    <div class="row mb-4">
+        <div class="col">
+            <form [formGroup]="form">
+                <div class="flex-column flex-md-row form-row">
+                    <div class="col">
+                        <input type="text" formControlName="filter" class="form-control" placeholder="Фильтр">
+                    </div>
+                    <div class="col">
+                        <input type="text" formControlName="api" class="form-control" placeholder="API key">
+                    </div>
+                    <button (click)="addToFav()" [disabled]="!selected || selected.length === 0" class="btn btn-secondary fa fa-star mx-1"></button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="row">
@@ -13,30 +23,36 @@
                             [(ngModel)]="selectDeselectAllModel" type="checkbox">
                     </span>
                     <span class="table-header__item">
-                        Название
-                        <span class="sort-icon"></span>
                     </span>
-                    <span class="table-header__item">
-                        Дата изменения
+                    <span class="table-header__item text-ellipse">
+                        Название
+                    </span>
+                    <span class="table-header__item text-ellipse">
+                        Описание
                     </span>
                     <span class="table-header__item">
                         Дата создания
                     </span>
                 </div>
                 <div class="table-body">
-                    <div class="table-body__item-container" *ngFor="let package of packages">
+                    <div (click)="checkboxChanged(package, $event)" class="table-body__item-container" *ngFor="let package of packages">
                         <span class="table-body__item">
                             <input class="fa fa-check" (click)="$event.stopPropagation()"
                                 (change)="checkboxChanged(package, $event)" type="checkbox"
                                 [checked]="package.isSelected">
                         </span>
+                        <span class="table-body__item thumbnail">
+                            <img class="thumbnail-image" [src]="package.volumeInfo.imageLinks?.smallThumbnail">
+                        </span>
                         <span class="table-body__item text-ellipse">
-                            {{package.name}}
+                            {{package.volumeInfo.title}}
+                        </span>
+                        <span class="table-body__item text-ellipse">
+                            {{package.volumeInfo.description}}
                         </span>
                         <span class="table-body__item">
-                            <div class="date">{{package.updated_at | date:'dd.MM.yyyy'}}</div>
-                            <div class="time">{{package.updated_at | date:'hh:mm:ss'}}</div>
-                        </span>                        
+                            <div class="date">{{package.volumeInfo.publishedDate | date:'dd.MM.yyyy'}}</div>
+                        </span>
                     </div>
                 </div>
             </div>

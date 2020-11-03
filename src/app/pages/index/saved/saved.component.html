@@ -1,1 +1,41 @@
-
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div class="table-container">
+                <div class="table-header">
+                    <span class="table-header__item">
+                    </span>
+                    <span class="table-header__item">
+                    </span>
+                    <span class="table-header__item text-ellipse">
+                        Название
+                    </span>
+                    <span class="table-header__item text-ellipse">
+                        Описание
+                    </span>
+                    <span class="table-header__item">
+                        Дата создания
+                    </span>
+                </div>
+                <div class="table-body">
+                    <div class="table-body__item-container" *ngFor="let package of packages">
+                        <span class="table-body__item">
+                        </span>
+                        <span class="table-body__item thumbnail">
+                            <img class="thumbnail-image" [src]="package.volumeInfo.imageLinks.smallThumbnail">
+                        </span>
+                        <span class="table-body__item text-ellipse">
+                            {{package.volumeInfo.title}}
+                        </span>
+                        <span class="table-body__item text-ellipse">
+                            {{package.volumeInfo.description}}
+                        </span>
+                        <span class="table-body__item">
+                            <div class="date">{{package.volumeInfo.publishedDate | date:'dd.MM.yyyy'}}</div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

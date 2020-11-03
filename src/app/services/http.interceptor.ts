@@ -19,7 +19,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
             tap(evnt => {
             }),
             catchError((err: any) => {
-                return throwError(err);
+                return throwError(err.error);
             }),
             finalize(() => {
                 this.events.uiLoaderShowHide.emit(false);

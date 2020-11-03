@@ -1,11 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { IPackage } from './package.model';
-import { ApiService } from '../../services/api.service';
-import { NgModel } from '@angular/forms';
+import { Component, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { debounceTime, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { HttpResponse } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
 import { NavigationEnd, Router } from '@angular/router';
 import { PerfectScrollbarDirective } from 'ngx-perfect-scrollbar';
 import { EventService } from 'src/app/services/event.service';
@@ -31,7 +26,12 @@ export class IndexComponent implements OnDestroy, AfterViewInit {
         let subs_1$ = this.router.events.pipe(
             filter(event => event instanceof NavigationEnd)
         ).subscribe((event: NavigationEnd) => {
-            let partUrl = event.url === event.urlAfterRedirects ? event.url.split('/')[2].replace(/\?.*/, '') : event.urlAfterRedirects.split('/')[2].replace(/\?.*/, '');
+            let url = event.url === event.urlAfterRedirects ? event.url : event.urlAfterRedirects;
+            let splited = url.split('/');
+            if (splited.length !== 3) {
+                return;
+            }
+            let partUrl = splited[2].replace(/\?.*/, '');
             for (let i in this.activeMenu) {
                 if (i === partUrl) {
                     this.activeMenu[i] = true;

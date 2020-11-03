@@ -3,14 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [{
     path: '',
-    redirectTo: '/packages',
+    redirectTo: '/packages/all',
     pathMatch: 'full'
 }, {
     path: 'packages',
     loadChildren: () => import('./pages/index/index.module').then(m => m.IndexModule)
 }, {
     path: '**',
-    redirectTo: '/packages'
+    redirectTo: '/packages/all'
 }];
 
 @NgModule({

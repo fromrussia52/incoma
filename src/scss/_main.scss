@@ -7,6 +7,7 @@
     width: 300px;
     height: 100%;
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .package-main {
@@ -20,11 +21,18 @@
 }
 
 .app-title {
-    font-weight: 500;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
 
-    display: flex;
-    align-items: center;
+    &__link {
+        text-decoration: none;
+        color: #000000c4;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 .app-menu {
@@ -35,12 +43,19 @@
     &__item {
         display: flex;
         align-items: center;
-        padding: 10px 0;
+        padding: 10px;
         list-style-type: none;
         cursor: pointer;
+        border-radius: 4px;
 
         &.active {
-            color: royalblue;
+            background: #000000c4;
+            color: #fff;
+        }
+
+        &:hover {
+            background: white;
+            color: #000;
         }
     }
 }
@@ -62,7 +77,7 @@
 
         &__item {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             user-select: none;
             cursor: pointer;
             font-size: 14px;
@@ -85,7 +100,7 @@
             }
 
             &:nth-child(2) {
-                flex: 1;
+                width: 50px;
             }
 
             &:nth-child(3) {
@@ -93,6 +108,10 @@
             }
 
             &:nth-child(4) {
+                flex: 1;
+            }
+
+            &:nth-child(5) {
                 flex: 0 0 20%;
             }
         }
@@ -105,9 +124,9 @@
             width: 100%;
             display: flex;
             align-items: center;
-            height: 60px;
+            min-height: 60px;
             border-radius: 2px;
-            padding: 0 20px;
+            padding: 5px 20px;
 
             &:focus,
             &:hover {
@@ -118,11 +137,10 @@
             .table-body__item {
                 &:nth-child(1) {
                     display: flex;
-                    align-items: center;
                 }
 
                 &:nth-child(2) {
-                    flex: 1;
+                    display: flex;
                 }
 
                 &:nth-child(3) {
@@ -130,6 +148,10 @@
                 }
 
                 &:nth-child(4) {
+                    flex: 1;
+                }
+
+                &:nth-child(5) {
                     flex: 0 0 20%;
                 }
 
@@ -145,6 +167,15 @@
                 }
             }
         }
+    }
+}
+
+.thumbnail {
+    width: 50px;
+
+    &-image {
+        height: 40px;
+        width: 40px;
     }
 }
 

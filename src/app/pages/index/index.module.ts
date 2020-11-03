@@ -6,6 +6,7 @@ import { IndexAllComponent } from './all/all.component';
 import { IndexSavedComponent } from './saved/saved.component';
 import { CommonModule } from '@angular/common';
 import { PerfectScrollbarConfigInterface, PerfectScrollbarModule, PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { FavoriteService } from './favorite.service';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -43,6 +44,7 @@ const routes: Routes = [{
     providers: [{
         provide: PERFECT_SCROLLBAR_CONFIG,
         useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
-    }]
+    }, FavoriteService
+    ]
 })
 export class IndexModule { }

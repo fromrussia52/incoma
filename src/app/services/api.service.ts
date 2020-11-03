@@ -7,22 +7,23 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
-    private apiUrl: string = 'https://api.github.com/search/repositories';
+    private apiUrl: string = 'https://www.googleapis.com/books/v1/volumes';
 
     constructor(
         private http: HttpClient
     ) { }
 
-    search(value: string, limit: number, offset: number): Observable<Object> {
+    search(value: string, limit: number, offset: number): Observable<HttpResponse<Object>> {
         return this.http.get(this.apiUrl, {
             params: new HttpParams({
                 fromObject: {
                     q: value,
-                    limit: String(limit),
-                    offset: String(offset)
+                    maxResults: String(limit),
+                    startIndex: String(offset)
                 }
             }),
-            observe: 'body'
+            observe: 'response',
+            responseType: 'json'
         });
     }
 }
