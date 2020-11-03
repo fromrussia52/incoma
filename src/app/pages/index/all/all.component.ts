@@ -48,6 +48,11 @@ export class IndexAllComponent implements OnInit, AfterViewInit, OnDestroy {
             this.unsetDataBeforeUpdate();
             this.getData();
         });
+
+        this.form.controls.api.valueChanges.pipe(debounceTime(400)).subscribe(value => {
+            this.unsetDataBeforeUpdate();
+            this.getData();
+        });
     }
 
     ngOnInit() {
@@ -117,6 +122,7 @@ export class IndexAllComponent implements OnInit, AfterViewInit, OnDestroy {
 
     addToFav() {
         this.fs.fav = this.selected;
+        this.toast.info('Сохраненные списки обновлены', 'Информация');
     }
 
     get selected() {
